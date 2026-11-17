@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0756b3">
+<title>Evaluasi Pelatihan AI & ChatGPT | Rumah Pemberdayaan Masyarakat</title>
+<style>
+:root{--blue:#0756b3;--navy:#08265b;--green:#159447;--gold:#ffc928;--bg:#f2f7ff;--ink:#14213d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(145deg,#e8f4ff,#f7fbff 48%,#e8f8ee);color:var(--ink)}
+header{background:linear-gradient(115deg,#073b91,#087bd4);color:white;padding:28px 16px 34px;text-align:center}
+header .brand{font-weight:800;letter-spacing:.5px;font-size:14px;color:#d9f6e4}
+header h1{font-size:clamp(25px,5vw,38px);line-height:1.12;margin:12px auto 8px;max-width:800px}
+header p{margin:0;font-size:15px}
+.wrap{max-width:850px;margin:-18px auto 40px;padding:0 14px}
+.card{background:white;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 10px 30px #173d7112;border:1px solid #e3edfb}
+h2{margin:0 0 15px;color:var(--navy);font-size:21px}
+label{display:block;font-weight:700;margin:12px 0 7px}
+input{width:100%;padding:13px 14px;border:1.5px solid #c9d8ec;border-radius:10px;font-size:16px;outline:none}
+input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0756b31a}
+.hint{font-size:13px;color:#63728a;line-height:1.5}
+.progress{height:9px;background:#e7eef8;border-radius:20px;overflow:hidden;margin:12px 0}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#159447,#75cf4b);transition:width .2s}
+.q{padding:16px 0;border-top:1px solid #edf1f7}
+.q:first-of-type{border-top:0}
+.qtitle{font-weight:700;line-height:1.45;margin-bottom:10px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid #e2eaf5;border-radius:10px;margin:7px 0;cursor:pointer;font-weight:400;line-height:1.35}
+.option:hover{background:#f4f8ff;border-color:#9bbce9}
+.option input{width:auto;margin:2px 0 0;accent-color:var(--blue);flex:0 0 auto}
+button,.btn-download{border:0;border-radius:12px;background:linear-gradient(100deg,#0756b3,#087bd4);color:white;font-size:17px;font-weight:800;padding:15px 22px;width:100%;cursor:pointer;box-shadow:0 6px 15px #0756b32c;text-align:center;text-decoration:none;display:block}
+button:disabled{opacity:.45;cursor:not-allowed}
+.btn-green{background:linear-gradient(100deg,#159447,#22c55e)!important;margin-top:10px}
+.result{display:none;text-align:center}
+.score{font-size:52px;font-weight:900;color:var(--blue);margin:8px 0}
+.stars{font-size:40px;letter-spacing:4px;color:#f5b800;margin:8px 0}
+.pill{display:inline-block;background:#eaf4ff;color:#0756b3;padding:7px 12px;border-radius:30px;font-weight:700;font-size:13px}
+.notice{background:#fff8df;border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;font-size:13px;line-height:1.5;margin-top:10px}
+
+/* Preview Sertifikat Card */
+.cert-preview-box {position: relative; width: 100%; max-width: 750px; margin: 15px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 2px solid var(--gold);}
+.cert-preview-box img {width: 100%; height: auto; display: block;}
+.cert-name-overlay {position: absolute; top: 46%; left: 50%; transform: translate(-50%, -50%); width: 75%; text-align: center; font-size: clamp(18px, 3.2vw, 32px); font-weight: 900; color: #08265b; font-family: 'Times New Roman', serif; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); letter-spacing: 1px;}
+
+footer{text-align:center;color:#64748b;font-size:13px;padding:12px 18px 28px}
+@media(min-width:650px){.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:26px}}
+@media print{header,.card:not(#result),footer{display:none!important}.result{display:block!important;box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">RUMAH PEMBERDAYAAN MASYARAKAT</div>
+  <h1>EVALUASI PELATIHAN<br>AI &amp; CHATGPT</h1>
+  <p>Belajar • Mencoba • Menghasilkan Karya</p>
+</header>
+
+<main class="wrap">
+  <!-- Unduh Modul Card -->
+  <section class="card">
+    <h2>📖 Materi &amp; Modul Pelatihan</h2>
+    <p class="hint">Unduh modul panduan lengkap Pelatihan AI &amp; ChatGPT untuk pemula dari Rumah Pemberdayaan Masyarakat.</p>
+    <a href="MODUL PELATIHAN ANGGOTA RPM.pdf" download class="btn-download btn-green">📥 Download Modul Pelatihan (PDF)</a>
+  </section>
+
+  <!-- Data Peserta & Live Sertifikat -->
+  <section class="card" id="identity">
+    <h2>📝 Data Peserta &amp; Cek Sertifikat</h2>
+    <div class="two">
+      <div><label for="nama">Nama lengkap (Sesuai Sertifikat)</label><input id="nama" autocomplete="name" placeholder="Masukkan nama lengkap" required oninput="updateCertName()"></div>
+      <div><label for="hp">Nomor HP / WhatsApp</label><input id="hp" inputmode="tel" autocomplete="tel" placeholder="Contoh: 081234567890" required></div>
+    </div>
+    <p class="hint">Ketik nama lengkap Anda di atas. Nama akan otomatis terisi pada pratinjau sertifikat di bawah ini secara langsung (*real-time*).</p>
+    
+    <!-- Live Sertifikat Preview -->
+    <div style="margin-top: 20px; text-align: center;">
+      <h3 style="color:var(--navy); font-size:17px; margin-bottom:8px;">Pratinjau Sertifikat Anda:</h3>
+      <div class="cert-preview-box">
+        <!-- Menggunakan gambar sertifikat asli -->
+        <img id="certImage" src="SERTIFIKAT_3.png" alt="Sertifikat Pelatihan RPM" crossorigin="anonymous">
+        <div class="cert-name-overlay" id="certNameDisplay">[ NAMA PESERTA ]</div>
+      </div>
+      <p class="hint">Sertifikat dapat diunduh setelah Anda menyelesaikan evaluasi di bawah atau langsung klik tombol di bawah:</p>
+      <button type="button" onclick="downloadCertificate()" style="margin-top: 10px; background:linear-gradient(100deg,#159447,#22c55e);">💾 Download Sertifikat (Gambar)</button>
+    </div>
+  </section>
+
+  <!-- Kuis / Evaluasi -->
+  <section class="card" id="quiz">
+    <h2>📚 10 Soal Pilihan Ganda Evaluasi</h2>
+    <div class="hint">Pilih satu jawaban A, B, C, atau D pada setiap soal di bawah ini.</div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="hint" id="progressText">0 dari 10 soal dijawab</div>
+    <form id="quizForm">
+      <div id="questions"></div>
+      <button id="submit" type="submit" disabled>Lihat Nilai &amp; Selesaikan Evaluasi</button>
+    </form>
+  </section>
+
+  <!-- Hasil Evaluasi -->
+  <section class="card result" id="result" aria-live="polite">
+    <div class="pill">HASIL EVALUASI RPM</div>
+    <h2 id="greeting">Terima kasih sudah mengikuti evaluasi!</h2>
+    <div class="score" id="score">0/100</div>
+    <div class="stars" id="stars">☆☆☆☆☆</div>
+    <h2 id="level"></h2>
+    <p id="feedback"></p>
+    <p><strong>Peserta:</strong> <span id="rNama"></span><br><strong>Nomor HP:</strong> <span id="rHp"></span></p>
+    <p class="hint" id="correct"></p>
+    
+    <button type="button" onclick="downloadCertificate()" class="btn-green" style="margin-bottom:12px;">📥 Download Sertifikat Resmi (PNG)</button>
+    <button type="button" onclick="window.print()">🖨️ Cetak / Simpan Halaman (PDF)</button>
+    
+    <div class="notice" style="margin-top:15px;">Tunjukkan hasil dan sertifikat ini kepada panitia Rumah Pemberdayaan Masyarakat (RPM).</div>
+  </section>
+</main>
+
+<footer>Rumah Pemberdayaan Masyarakat<br><strong>Bersama Berdaya Menuju Sejahtera</strong></footer>
+
+<script>
+// Real-time update nama pada sertifikat
+function updateCertName() {
+  const val = document.getElementById('nama').value.trim();
+  const display = document.getElementById('certNameDisplay');
+  display.textContent = val ? val : '[ NAMA PESERTA ]';
+}
+
+// Fungsi download sertifikat dengan Canvas agar nama tercetak di gambar
+function downloadCertificate() {
+  const namaVal = document.getElementById('nama').value.trim();
+  if(!namaVal) {
+    alert('Mohon isi nama lengkap Anda terlebih dahulu di bagian Data Peserta!');
+    document.getElementById('nama').focus();
+    return;
+  }
+
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.src = "SERTIFIKAT_3.png";
+  
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth || 1600;
+    canvas.height = img.naturalHeight || 1131;
+    const ctx = canvas.getContext('2d');
+    
+    // Gambar latar belakang sertifikat
+    ctx.drawImage(img, 0, 0);
+    
+    // Konfigurasi teks nama di atas sertifikat
+    ctx.font = "bold 52px 'Times New Roman', Times, serif";
+    ctx.fillStyle = "#08265b";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    
+    // Posisi koordinat nama pada sertifikat (persentase tengah)
+    const x = canvas.width / 2;
+    const y = canvas.height * 0.46;
+    
+    // Cetak nama peserta
+    ctx.fillText(namaVal.toUpperCase(), x, y);
+    
+    // Proses download otomatis
+    const link = document.createElement('a');
+    link.download = 'Sertifikat_Pelatihan_AI_' + namaVal.replace(/\s+/g, '_') + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
+
+  img.onerror = function() {
+    alert('Gagal memuat gambar sertifikat utama. Pastikan file "SERTIFIKAT_3.png" berada di folder yang sama dengan file HTML ini.');
+  };
+}
+
+// Data Soal Evaluasi
+const data = [
+ {q:"Apa yang dimaksud dengan AI?",o:["A. Aplikasi untuk bermain game","B. Teknologi yang membantu manusia mengolah informasi dan menyelesaikan tugas","C. Alat untuk memperbaiki HP","D. Mesin pencetak dokumen"],a:1},
+ {q:"Apa fungsi utama ChatGPT?",o:["A. Mengajak berinteraksi untuk membantu menjawab pertanyaan dan membuat tulisan","B. Mengisi pulsa HP","C. Mengganti jaringan internet","D. Memperbaiki perangkat komputer"],a:0},
+ {q:"Apa yang dimaksud dengan prompt?",o:["A. Nama aplikasi Google","B. Hasil akhir sebuah video","C. Kalimat perintah atau pertanyaan yang diberikan kepada AI","D. Kata sandi akun"],a:2},
+ {q:"Dalam rumus prompt 4 bagian, bagian yang benar adalah ...",o:["A. Nama, alamat, nomor HP, password","B. Peran, tugas, informasi, dan gaya","C. Foto, video, musik, warna","D. Judul, harga, diskon, alamat"],a:1},
+ {q:"Jika ingin membuat berita kegiatan warga menggunakan ChatGPT, apa yang harus disiapkan?",o:["A. Fakta nama kegiatan, tanggal, tempat, peserta, dan hasil kegiatan","B. Cerita yang dibuat-buat","C. Kata sandi pengurus","D. Informasi yang belum diketahui"],a:0},
+ {q:"Apa yang harus dilakukan setelah ChatGPT menghasilkan tulisan?",o:["A. Langsung disebarkan tanpa dibaca","B. Menghapus semua hasilnya","C. Memeriksa nama, tanggal, lokasi, angka, dan kebenaran informasi","D. Menganggap semuanya pasti benar"],a:2},
+ {q:"Apa tujuan menggunakan ChatGPT untuk promosi UMKM?",o:["A. Menghapus produk usaha","B. Membantu membuat teks promosi yang menarik dan sesuai produk","C. Mengubah harga tanpa izin pemilik","D. Menghilangkan kontak usaha"],a:1},
+ {q:"Apa langkah awal membuat video menggunakan Google Flow?",o:["A. Membuka browser Chrome dan masuk ke Google Flow menggunakan akun Google","B. Mematikan internet","C. Menghapus akun Google","D. Membuka aplikasi kalkulator"],a:0},
+ {q:"Apa yang perlu dijelaskan dalam prompt video agar hasilnya sesuai keinginan?",o:["A. Hanya nama pembuat video","B. Hanya warna HP","C. Subjek, aksi, lokasi, pencahayaan, dan gaya video","D. Password akun Google"],a:2},
+ {q:"Manakah tindakan yang benar dalam menggunakan AI secara aman dan bertanggung jawab?",o:["A. Membagikan kode OTP kepada AI","B. Menyebarkan berita yang belum diperiksa","C. Mengunggah foto orang tanpa izin","D. Memeriksa fakta dan menjaga data pribadi"],a:3}
+];
+
+const host=document.getElementById('questions');
+data.forEach((item,i)=>{
+ const div=document.createElement('div');div.className='q';
+ const title=document.createElement('div');title.className='qtitle';title.textContent=(i+1)+'. '+item.q;div.appendChild(title);
+ item.o.forEach((opt,j)=>{
+  const lab=document.createElement('label');lab.className='option';
+  const radio=document.createElement('input');radio.type='radio';radio.name='q'+i;radio.value=j;radio.required=true;
+  const span=document.createElement('span');span.textContent=opt;
+  lab.append(radio,span);div.appendChild(lab);
+ });
+ host.appendChild(div);
+});
+
+const form=document.getElementById('quizForm'),submit=document.getElementById('submit');
+function updateProgress(){
+ const count=data.filter((_,i)=>form.querySelector('input[name="q'+i+'"]:checked')).length;
+ document.getElementById('bar').style.width=(count*10)+'%';
+ document.getElementById('progressText').textContent=count+' dari 10 soal dijawab';
+ submit.disabled=count!==10;
+}
+
+form.addEventListener('change',updateProgress);
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const nama=document.getElementById('nama').value.trim();
+ const hp=document.getElementById('hp').value.trim();
+ if(!nama||!hp){alert('Mohon isi nama lengkap dan nomor HP terlebih dahulu.');document.getElementById(!nama?'nama':'hp').focus();return;}
+ const digits=hp.replace(/\D/g,'');
+ if(digits.length<9||digits.length>15){alert('Periksa kembali nomor HP. Masukkan 9–15 angka.');document.getElementById('hp').focus();return;}
+ let correct=0;
+ data.forEach((item,i)=>{const chosen=form.querySelector('input[name="q'+i+'"]:checked');if(chosen&&Number(chosen.value)===item.a)correct++;});
+ const score=correct*10;
+ const stars=score>=90?5:score>=70?4:score>=50?3:score>=30?2:1;
+ const messages={
+   5:['Sangat Hebat!','Luar biasa! Anda sangat memahami materi AI dan ChatGPT.'],
+   4:['Bagus Sekali!','Pemahaman Anda sudah baik. Terus tingkatkan praktik menggunakan AI.'],
+   3:['Cukup Baik!','Anda sudah memahami dasar-dasarnya. Ulangi materi dan terus berlatih.'],
+   2:['Tetap Semangat!','Mari pelajari kembali materi dan coba praktik dengan pendamping.'],
+   1:['Ayo Terus Belajar!','Tidak apa-apa. Belajar AI adalah proses. Baca modul dan coba lagi.']
+ };
+ document.getElementById('greeting').textContent='Selamat, '+nama+'!';
+ document.getElementById('score').textContent=score+'/100';
+ document.getElementById('stars').textContent='★'.repeat(stars)+'☆'.repeat(5-stars);
+ document.getElementById('level').textContent=messages[stars][0];
+ document.getElementById('feedback').textContent=messages[stars][1];
+ document.getElementById('rNama').textContent=nama;
+ document.getElementById('rHp').textContent=hp;
+ document.getElementById('correct').textContent='Jawaban benar: '+correct+' dari 10 soal. Setiap jawaban benar bernilai 10 poin.';
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+ submit.disabled=true;
+});
+</script>
+</body>
+</html>
